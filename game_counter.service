@@ -1,0 +1,13 @@
+[Unit]
+Description=game.carroty.com 방문자 카운터 (games/counter.py)
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 /home/oyee/webapps/app/games/counter.py
+WorkingDirectory=/home/oyee/webapps/app/games
+User=oyee
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

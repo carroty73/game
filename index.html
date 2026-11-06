@@ -23,6 +23,11 @@ h2{font-size:20px;margin:28px 0 16px}
 .card{background:var(--card);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}
 .card:hover{transform:translateY(-4px);box-shadow:0 12px 30px #0008}
 .thumb{height:180px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+a.thumb{cursor:pointer}
+.play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;
+ background:#0009;opacity:0;transition:opacity .2s}
+a.thumb:hover .play,a.thumb:focus-visible .play{opacity:1}
+@media (hover:none){.play{opacity:0}}
 .thumb.galaga{background:linear-gradient(#050316,#1b1060)}
 .thumb.tetris{background:linear-gradient(#06222e,#0b4a5e)}
 .sprite{width:64px;height:64px;background-repeat:no-repeat;image-rendering:pixelated;position:absolute}
@@ -41,6 +46,7 @@ h2{font-size:20px;margin:28px 0 16px}
 .btn{margin-top:auto;display:block;text-align:center;padding:12px;border-radius:10px;font-weight:700;background:linear-gradient(90deg,var(--acc),var(--acc2))}
 .btn.sub{margin-top:8px;background:var(--card2);border:1px solid #ffffff22;font-weight:600}
 .btn.off{background:#3a3556;color:#8d86ad;cursor:not-allowed}
+#visitors{margin-bottom:4px}#visitors b{color:var(--text)}
 footer{text-align:center;color:var(--sub);font-size:13px;padding:24px;border-top:1px solid #ffffff14}
 </style>
 </head>
@@ -49,8 +55,8 @@ footer{text-align:center;color:var(--sub);font-size:13px;padding:24px;border-top
 
 <section class="hero">
   <div class="crumb">게임 &gt; 아케이드</div>
-  <h1>브라우저에서 바로 즐기는 아케이드 게임</h1>
-  <p>설치 없이 클릭 한 번으로 시작하세요. 갤러그와 테트리스를 직접 만들고 있습니다.</p>
+  <h1>아케이드 게임</h1>
+  <p>안드로이드 앱(APK)을 내려받아 설치하면 바로 시작할 수 있습니다. 갤러그와 테트리스를 직접 만들고 있습니다.</p>
 </section>
 
 <main>
@@ -58,18 +64,18 @@ footer{text-align:center;color:var(--sub);font-size:13px;padding:24px;border-top
   <div class="grid">
 
     <article class="card">
-      <div class="thumb galaga">
-        <span class="badge">플레이 가능</span>
+      <a class="thumb galaga" href="../galaga/web/" title="브라우저에서 플레이" aria-label="갤러그를 브라우저에서 플레이">
+        <span class="badge">앱 제공</span>
         <div class="sprite zako z1"></div><div class="sprite zako z2"></div><div class="sprite zako z3"></div>
         <div class="sprite fighter"></div>
-      </div>
+        <span class="play">▶ 브라우저에서 플레이</span>
+      </a>
       <div class="body">
         <h3>갤러그</h3>
         <p>쏟아지는 적을 쓰러뜨리고, 떨어지는 사탕으로 기체를 강화하는 우주 슈팅 게임입니다.</p>
-        <div class="tags"><span>슈팅</span><span>아케이드</span><span>PC / 모바일</span></div>
-        <div class="keys">방향키 또는 WASD 이동 · 스페이스 발사 · 모바일은 터치</div>
-        <a class="btn" href="../galaga/web/">플레이</a>
-        <a class="btn sub" href="../galaga/galaga.apk" download>📲 앱 다운로드 (안드로이드)</a>
+        <div class="tags"><span>슈팅</span><span>아케이드</span><span>안드로이드</span></div>
+        <div class="keys">화면을 누르는 곳으로 이동 · 자동 발사</div>
+        <a class="btn" href="../galaga/galaga.apk" download>앱 다운로드 (안드로이드)</a>
       </div>
     </article>
 
@@ -101,6 +107,18 @@ footer{text-align:center;color:var(--sub);font-size:13px;padding:24px;border-top
   </div>
 </main>
 
-<footer>© 2026 Carroty · app.carroty.com</footer>
+<footer>
+  <div id="visitors" hidden>방문자 오늘 <b id="v-today">-</b> · 전체 <b id="v-total">-</b></div>
+  © 2026 Carroty · app.carroty.com
+</footer>
+<script>
+/* 방문자 카운터: 같은 방문자는 하루에 한 번만 센다. 카운터 서버가 없는 주소(app.carroty.com/games/)에서는 숨긴다. */
+fetch("/count", {method: "POST"}).then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+  .then(function (d) {
+    document.getElementById("v-today").textContent = d.today.toLocaleString();
+    document.getElementById("v-total").textContent = d.total.toLocaleString();
+    document.getElementById("visitors").hidden = false;
+  }).catch(function () {});
+</script>
 </body>
 </html>
