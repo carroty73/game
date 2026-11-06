@@ -29,12 +29,18 @@ a.thumb{cursor:pointer}
 a.thumb:hover .play,a.thumb:focus-visible .play{opacity:1}
 @media (hover:none){.play{opacity:0}}
 .thumb.galaga{background:linear-gradient(#050316,#1b1060)}
+.thumb.tarot{background:radial-gradient(ellipse at 50% 30%,#4a2a7a,#1a0f35 75%)}
 .thumb.tetris{background:linear-gradient(#06222e,#0b4a5e)}
 .sprite{width:64px;height:64px;background-repeat:no-repeat;image-rendering:pixelated;position:absolute}
 .fighter{background-image:url(../galaga/assets/images/fighters.png);background-position:0 0;left:50%;bottom:14px;margin-left:-32px}
 .zako{background-image:url(../galaga/assets/images/zako.png)}
 .z1{left:22%;top:18px}.z2{left:44%;top:10px}.z3{left:66%;top:18px}
 .blk{position:absolute;width:26px;height:26px;border-radius:4px;box-shadow:inset 0 0 0 3px #0003}
+.tcard{position:absolute;width:62px;height:98px;border-radius:8px;border:2px solid #e8c96a;background:linear-gradient(160deg,#2c1b55,#150c30);
+ display:flex;align-items:center;justify-content:center;color:#e8c96a;font-size:30px;box-shadow:0 6px 16px #0008}
+.tcard.l{transform:translateX(-62px) rotate(-14deg)}
+.tcard.r{transform:translateX(62px) rotate(14deg)}
+.tcard.c{z-index:1;font-size:36px}
 .badge{position:absolute;top:10px;left:10px;font-size:12px;font-weight:700;padding:2px 10px;border-radius:99px;background:var(--acc2)}
 .badge.soon{background:#555}
 .body{padding:18px;display:flex;flex-direction:column;gap:8px;flex:1}
@@ -99,6 +105,20 @@ footer{text-align:center;color:var(--sub);font-size:13px;padding:24px;border-top
         <h3>테트리스</h3>
         <p>내려오는 블록을 돌리고 쌓아 줄을 지우는 고전 퍼즐 게임입니다.</p>
         <div class="tags"><span>퍼즐</span><span>아케이드</span><span>PC / 모바일</span></div>
+        <div class="keys">곧 공개됩니다</div>
+        <span class="btn off">준비 중</span>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="thumb tarot">
+        <span class="badge soon">준비 중</span>
+        <div class="tcard l">☾</div><div class="tcard r">☀</div><div class="tcard c">★</div>
+      </div>
+      <div class="body">
+        <h3>타로</h3>
+        <p>카드를 뽑아 오늘의 운세와 조언을 읽어 보는 타로 앱입니다.</p>
+        <div class="tags"><span>타로</span><span>운세</span><span>안드로이드</span></div>
         <div class="keys">곧 공개됩니다</div>
         <span class="btn off">준비 중</span>
       </div>
